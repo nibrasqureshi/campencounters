@@ -23,6 +23,11 @@
     <%= f.text_field :phone, autofocus: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.country_select :country %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

@@ -24,6 +24,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :country %><br />
+    <%= f.country_select :country %>
+  </div>
+
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -42,10 +48,12 @@
   </div>
 
   <div class="actions">
+    <%= f.label :do_you_agree? %>
     <%= f.check_box :agreement, class: 'form-control' %>
   </div>
 
   <div class="actions">
+    <br>
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
