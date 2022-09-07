@@ -1,7 +1,7 @@
 # frozen_string_literal:true
 
 Rails.application.configure do # rubocop:disable Metrics/BlockLength
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = { from: 'infinikorn@email.com' }
