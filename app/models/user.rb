@@ -14,7 +14,7 @@ class User < ApplicationRecord
   scope :simple_users, -> { where(type: nil) }
 
   validates :password, presence: true, confirmation: { case_sensitive: true },
-                       format: { with: /\A(?=.*\d)(?=.*([A-Z]))([\x20-\x7E]|[^\x00-\x7F]){6,100}\z/ }
+             format: { with: /\A(?=.*\d)(?=.*([A-Z]))([\x20-\x7E]|[^\x00-\x7F]){6,100}\z/ }
 
   validates :first_name, presence: true
   validates :last_name, presence: true

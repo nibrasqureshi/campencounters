@@ -1,0 +1,38 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">User Id</th>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Phone Number</th>
+			<th scope="col">Country</th>
+			<th scope="col">City</th>
+			<th scope="col">Role</th>
+			<th scope="col">Application status</th>
+			<th scope="col">Last Accessed</th>
+			<th scope="col">Subscription status</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<% @users.each do |user| %>
+		<tbody>
+			<tr>
+				<th scope="row"><%= user.id %></th>
+				<td><%= user.first_name %> <%= user.last_name %></td>
+				<td><%= user.email %></td>
+				<td><%= user.phone %></td>
+				<td><%= user.country %></td>
+				<td>LHR</td>
+				<td><%= user.type %></td>
+				<td>In-Active</td>
+				<td>1 min ago</td>
+				<td>subscribed</td>
+				<td>
+					<%= link_to "Click me", admin_user_path(user) %>
+					<%= link_to "Edit  me", edit_admin_user_path(user) %>
+					<%= link_to "Delete User", admin_user_path(user), method: :delete, data: {Confirm: "Are you sure?"}  %>
+				</td>
+			</tr>
+		</tbody>	
+  <% end %>
+</table>
