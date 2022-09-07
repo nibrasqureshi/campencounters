@@ -1,60 +1,79 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container-fluid w-50 border rounded shadow mt-5 p-4 bg-light ">
+  <h2>Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline" >
+          <%= f.label :first_name %><br />
+          <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
+    <div class="form-outline mb-4">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div> 
+    
+    <div class="form-outline mb-4">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div> 
+    <div class="form-outline mb-4">
+      <%= f.label :country%><br />
+      <%= f.country_select :country, {}, class: "dropdown-item"   %>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline" >
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field mb-3 text-start ">
+      <p style="text-align: justify;" >
+        By voluntarily registering on this site, you consent to:
+        <b>(i)</b> the collection, use and disclosure by the XYZ Institutions of your personal information, including your personal health information for the purposes of:
+        <b>(a)</b> institutional planning to assist with the creation.
+        <b>(b)</b> notification and/or delivery of other programs and services.
+        <b>(c)</b> statistical analysis necessary to further assist.
+        <b>(d)</b> planning of or response to a natural disaster or other event deemed to be an emergency (collectively, the "Purposes"); and <b>(ii)</b> being contacted by the XYZ Institutions for reasons related to the Purposes. For more information please review our <a class="text-decoration-none" href="https://ge-stage-2019.herokuapp.com/privacy_policy" target="_blank" >Privacy Policy.</a>
+      </p>
+    </div>
+
+    <div class="form-check text-center">
+      <%= f.label :do_you_agree? %>
+      <%= f.check_box :agreement %>
+    </div>
+
+    <div class="actions mb-2 text-center">
+      <br>
+      <%= f.submit "Sign up", class: 'btn btn-primary btn-block mb-4' %>
+      <p>or?</p>
+      <%= render "devise/shared/links", class: 'btn btn-primary btn-block mb-4' %>
+    </div>
+  <% end %>
+
   
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.country_select :country %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-  <p>By voluntarily registering on this site, you consent to:
-    (i) the collection, use and disclosure by the XYZ Institutions of your personal information, including your personal health information for the purposes of: (a) institutional planning to assist with the creation (b) notification and/or delivery of other programs and services (c) statistical analysis necessary to further assist  (d) planning of or response to a natural disaster or other event deemed to be an emergency (collectively, the "Purposes"); and (ii) being contacted by the XYZ Institutions for reasons related to the Purposes. For more information please review our <a class="text-decoration-none" href="https://ge-stage-2019.herokuapp.com/privacy_policy" target="_blank" >Privacy Policy.</a></p>
-  </div>
-
-  <div class="actions">
-    <%= f.label :do_you_agree? %>
-    <%= f.check_box :agreement, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <br>
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
