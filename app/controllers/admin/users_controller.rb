@@ -1,14 +1,16 @@
+# frozen_string_literal:true
+
+# this is a user controller for admin
 class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
   def index
     @users = User.all
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
+
   def destroy
     @user.destroy
     redirect_to admin_users_path
@@ -16,7 +18,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(post_params)
-      redirect_to ([:admin, @user])
+      redirect_to([:admin, @user])
     else
       render 'edit'
     end
