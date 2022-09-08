@@ -2,6 +2,7 @@
 
 # User model
 class User < ApplicationRecord
+  paginates_per 5
   attribute :agreement, :integer
 
   validates :agreement, acceptance: { accept: 1 }

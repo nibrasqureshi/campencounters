@@ -4,7 +4,7 @@
 class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
   def show; end
