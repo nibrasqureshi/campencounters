@@ -5,7 +5,12 @@ class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
   def index
-    @users = User.order("#{sort_column} #{sort_direction}").page(params[:page])
+    if params[:search].present?
+      @users = User.where("lower(users.type) LIKE :value or users.phone LIKE :value or lower(users.country) LIKE :value or lower(users.first_name) LIKE :value or lower(users.email) LIKE :value ", value: "%#{params[:search].downcase}%").page(params[:page])
+    else
+      @users = User.order("#{sort_column} #{sort_direction}").page(params[:page])
+    end
+   
   end
 
   def show; end
