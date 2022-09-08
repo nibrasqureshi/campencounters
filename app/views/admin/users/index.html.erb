@@ -1,16 +1,14 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th scope="col">User Id</th>
-			<th scope="col">Name</th>
-			<th scope="col">Email</th>
-			<th scope="col">Phone Number</th>
-			<th scope="col">Country</th>
-			<th scope="col">City</th>
-			<th scope="col">Role</th>
-			<th scope="col">Application status</th>
-			<th scope="col">Last Accessed</th>
-			<th scope="col">Subscription status</th>
+			<th scope="col"><%= sortable "id", "User Id" %></th>
+			<th scope="col"><%= sortable "first_name", "Name" %></th>
+			<th scope="col"><%= sortable "email", "Email" %></th>
+			<th scope="col"><%= sortable "phone", "Phone" %></th>
+			<th scope="col"><%= sortable "country", "Country" %></th>
+			<th scope="col"><%= sortable "created_at", "Created" %></th>
+			<th scope="col"><%= sortable "type", "Role" %></th>
+			<th scope="col"><%= sortable "confirmed_at", "Confirmation status" %></th>
 			<th scope="col">Actions</th>
 		</tr>
 	</thead>
@@ -22,11 +20,9 @@
 				<td><%= user.email %></td>
 				<td><%= user.phone %></td>
 				<td><%= user.country %></td>
-				<td>LHR</td>
+				<td><%= user.created_at.to_date %></td>
 				<td><%= user.type %></td>
-				<td>In-Active</td>
-				<td>1 min ago</td>
-				<td>subscribed</td>
+				<td><%= user.confirmed_at %></td>
 				<td>
 					<%= link_to "Click me", admin_user_path(user) %>
 					<%= link_to "Edit  me", edit_admin_user_path(user) %>
@@ -35,5 +31,5 @@
 			</tr>
 		</tbody>	
   <% end %>
-</table>
+</table> 
 <%= paginate @users %>
