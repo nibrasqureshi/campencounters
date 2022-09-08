@@ -31,7 +31,7 @@
 
     <div class="form-outline mb-4">
       <%= f.label :country%><br />
-      <%= f.country_select :country, class: "dropdown-item" %>
+      <%= f.country_select :country, {},  class: "dropdown-item" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

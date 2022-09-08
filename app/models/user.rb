@@ -2,6 +2,7 @@
 
 # User model
 class User < ApplicationRecord
+  paginates_per 5
   attribute :agreement, :integer
 
   validates :agreement, acceptance: { accept: 1 }
@@ -18,4 +19,14 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  def self.search(term)
+    where(
+      'lower(users.type) LIKE :value
+       or users.phone LIKE :value or
+       lower(users.country) LIKE :value or
+       lower(users.first_name) LIKE :value or
+       lower(users.email) LIKE :value ', value: "%#{term.downcase}%"
+    )
+  end
 end
