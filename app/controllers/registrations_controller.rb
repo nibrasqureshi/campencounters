@@ -17,5 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:first_name, :last_name, :email, :password, :current_password, :phone, :country)
     end
+
+    devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
   end
 end
