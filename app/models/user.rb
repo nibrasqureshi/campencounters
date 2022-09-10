@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   validates :agreement, acceptance: { accept: 1 }
   # Include default devise modules. Others available are:
-  #   :lockable, :timeoutable, :trackable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
+  #   :invitable :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
 

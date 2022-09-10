@@ -1,0 +1,7 @@
+Welcome to example.com, <%= @user.first_name %>
+===============================================
+You have successfully signed up to example.com,
+your email is: <%= @user.email %>.
+set your password by clicking on the button below,
+ <%= link_to "Join us", new_user_password_url, class: "btn btn-secondary" %>
+Thanks for joining and have a great day!

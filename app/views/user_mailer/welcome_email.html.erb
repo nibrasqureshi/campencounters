@@ -1,0 +1,8 @@
+<h1>Welcome to example.com, <%= @user.first_name %></h1>
+  <p>
+    You have successfully signed up to example.com,
+    your email is: <%= @user.email %>.<br>
+    and you can set your new account's password by clicking on the button below <br>
+  </p>
+  <%= link_to "Join us", new_user_password_url, class: "btn btn-secondary" %>
+<p>Thanks for joining and have a great day!</p>

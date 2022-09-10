@@ -36,7 +36,8 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(post_params)
     if @user.save
-      redirect_to @user
+      UserMailer.welcome_email(@user).deliver_now
+      redirect_to admin_users_path
     else
       render 'new'
     end
