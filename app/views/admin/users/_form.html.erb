@@ -1,4 +1,7 @@
 <div class="container-fluid w-50 border rounded shadow mt-5 p-4 bg-light ">
+  <div class="text-center">
+    <%= render 'profile_pic' %>
+  </div> <br>
   <%= form_for ([:admin, @user]) do |f| %>
   <div class="row mb-4">
     <div class="col">
@@ -14,6 +17,12 @@
       </div>
     </div>
   </div>
+
+  <div class="form-outline mb-4">
+    <%= f.label :Profile_photo %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="form-outline mb-4">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>

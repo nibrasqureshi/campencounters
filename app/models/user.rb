@@ -2,6 +2,7 @@
 
 # User model
 class User < ApplicationRecord
+  has_one_attached :avatar
   paginates_per 5
   attribute :agreement, :integer
 
