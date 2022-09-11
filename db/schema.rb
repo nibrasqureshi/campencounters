@@ -1,4 +1,4 @@
-# frozen_string_literal:true
+# frozen_string_literal: true
 
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_911_073_438) do
+ActiveRecord::Schema.define(version: 20_220_911_143_155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20_220_911_073_438) do
     t.string 'checksum', null: false
     t.datetime 'created_at', null: false
     t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
+  end
+
+  create_table 'camps', force: :cascade do |t|
+    t.integer 'camp_type'
+    t.string 'camp_title'
+    t.string 'locations'
+    t.datetime 'applicant_registration_time'
+    t.datetime 'parent_registration_time'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   create_table 'users', force: :cascade do |t|

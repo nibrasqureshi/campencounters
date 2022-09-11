@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+# camp test yml 
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  camp_type: 1
+  camp_title: MyString
+  locations: MyString
+  applicant_registration_time: 2022-09-11 19:31:55
+  parent_registration_time: 2022-09-11 19:31:55
+
+two:
+  camp_type: 1
+  camp_title: MyString
+  locations: MyString
+  applicant_registration_time: 2022-09-11 19:31:55
+  parent_registration_time: 2022-09-11 19:31:55
