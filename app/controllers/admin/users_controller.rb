@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(post_params)
+    if @user.update(user_params)
       redirect_to([:admin, @user])
     else
       render 'edit'
@@ -34,7 +34,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(post_params)
+    @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
       redirect_to admin_users_path
@@ -49,8 +49,8 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def post_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password)
   end
 
   def sort_column

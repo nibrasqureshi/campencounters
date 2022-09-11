@@ -1,11 +1,19 @@
-<div class="container-fluid w-100 border rounded shadow mt-5 p-4 bg-light ">
+<div class="container-fluid w-75 border rounded shadow mt-5 p-4 bg-light ">
   <table class="table">
 		<%= form_tag admin_users_path, method: :get do %>
-			<div class="input-group input-group-sm" style="width: 250px;">
-				<%= link_to "New User", new_admin_user_path,  class: "btn btn-secondary" %>
-				<%= search_field_tag :search, params[:search], placeholder: 'Search here', class: 'form-control' %>
-				<%= submit_tag "search", class: "btn btn-secondary"%>
+		<div class="row">
+			<div class="col">
+				<div class="input-group input-group-sm" style="width: 250px;">
+					<%= search_field_tag :search, params[:search], placeholder: 'Search here', class: 'form-control' %>
+					<%= submit_tag "search", class: "btn btn-success"%>
+				</div>
 			</div>
+			<div class="col">
+				<div class="input-group input-group-sm" style="width: 250px; margin-left: 80%;">
+					<%= link_to "+ Invite User", new_admin_user_path,  class: "btn btn-success " %>
+				</div>
+			</div>	
+		</div>
 		<% end %>
 		<thead>
 			<tr style="text-decoration:none ;">
@@ -30,13 +38,13 @@
 					<td><%= user.created_at.strftime("%a, %b %-d, %Y") %></td>
 					<td><%= check_data_presence(user.type) %></td>
 					<td>
-						<%= link_to "Click me", admin_user_path(user) %>
-						<%= link_to "Edit  me", edit_admin_user_path(user) %>
-						<%= link_to "Delete User", admin_user_path(user), method: :delete, data: {Confirm: "Are you sure?"}  %>
+						<%= link_to image_tag("search.png"), admin_user_path(user) %>
+						<%= link_to image_tag("equalizer.png"), edit_admin_user_path(user) %>
+						<%= link_to image_tag("delete.png"), admin_user_path(user), method: :delete, data: {Confirm: "Are you sure?"}  %>
 					</td>
 				</tr>
 			</tbody>	
 		<% end %>
 	</table> 
-	<%= paginate @users %>
+	<%= paginate @users, theme: 'bootstrap-5' %>
 </div>
