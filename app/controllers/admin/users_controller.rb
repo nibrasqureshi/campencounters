@@ -10,6 +10,11 @@ class Admin::UsersController < ApplicationController
              else
                User.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+             
+    respond_to do |format|
+      format.html
+      format.csv { send_data ExportService::UserExport.new(User.all).to_csv, filename: "userinfo-#{Date.today}.csv" }
+    end
   end
 
   def show; end

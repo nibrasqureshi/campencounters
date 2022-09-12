@@ -1,0 +1,43 @@
+<div class="container-fluid w-50 border rounded shadow mt-5 p-4 bg-light ">
+  <div class="text-center">
+  </div> <br>
+  <%= form_for ([:admin, @camp]) do |f| %>
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline" >
+        <%= f.label :Camp_title %><br />
+        <%= f.text_field :camp_title, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <%= f.label :camp_type %><br />
+        <%= f.select :camp_type, Camp.camp_types.keys,{}, class: "form-select" %>
+      </div>
+    </div>
+  </div>
+
+  <% locations = ['Kenya', 'Expedition Kenya', 'India', 'Expedition India', 'Pakistan'] %>
+    <% locations.each do |location| %>
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <%= f.label location %><br />
+        <%= f.check_box :locations, { multiple: true }, location, false %>
+        
+      </div>
+      <br>
+    <% end %>
+  <div class="form-outline mb-4">
+    <%= f.label :applicant_registration_time %><br />
+    <%= f.text_field :applicant_registration_time, type: :time, class: "form-control" %>
+  </div> 
+  
+  <div class="form-outline mb-4">
+    <%= f.label :parent_registration_time %><br />
+    <%= f.text_field :parent_registration_time, type: :time, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit  class: 'btn btn-primary btn-block mb-4' %>
+  <% end %>
+  </div>
+</div>
