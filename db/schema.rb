@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 # rubocop:disable all
-ActiveRecord::Schema.define(version: 20_220_912_070_110) do
+ActiveRecord::Schema.define(version: 20_220_913_105_424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20_220_912_070_110) do
     t.date 'parent_registration_date_end'
     t.time 'applicant_registration_time_end'
     t.time 'parent_registration_time_end'
+    t.integer 'status', default: 0, null: false
   end
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
@@ -59,6 +60,11 @@ ActiveRecord::Schema.define(version: 20_220_912_070_110) do
     t.string 'reset_password_token'
     t.datetime 'reset_password_sent_at'
     t.datetime 'remember_created_at'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.inet 'current_sign_in_ip'
+    t.inet 'last_sign_in_ip'
     t.string 'confirmation_token'
     t.datetime 'confirmed_at'
     t.datetime 'confirmation_sent_at'

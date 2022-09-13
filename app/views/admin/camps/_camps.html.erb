@@ -1,0 +1,20 @@
+<% @camps.each do |camp| %>
+	<tr>
+    <th scope="row"><%= camp.id %></th>
+    <td><%= camp.camp_title %></td>
+    <td><%= camp.camp_type %></td>
+    <td><%= check_data_presence(camp.locations) %></td>
+    <td>
+      <%= link_to update_status_admin_camp_path(id: camp.id, status: camp.active? ? 'in_active' : 'active' ), method: :patch, remote: true   do %>
+        <%= check_data_presence(camp.status) %>
+      <% end %>
+    </td>
+    <td><%= check_data_presence(camp.applicant_registration_date) %></td>
+    <td><%= camp.created_at.strftime("%a, %b %-d, %Y") %></td>
+    <td>
+      <%= link_to image_tag("search.png"), admin_camp_path(camp) %>
+      <%= link_to image_tag("equalizer.png"), edit_admin_camp_path(camp) %>
+      <%= link_to image_tag("delete.png"), admin_camp_path(camp), method: :delete, data: {Confirm: "Are you sure?"}  %>
+    </td>
+  </tr>	
+<% end %>

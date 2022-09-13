@@ -11,7 +11,7 @@ class User < ApplicationRecord
   #   :invitable :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable
+         :confirmable, :trackable
 
   scope :simple_users, -> { where(type: nil) }
 

@@ -3,6 +3,7 @@
 # camp model
 class Camp < ApplicationRecord
   enum camp_type: { Virtual: 0, Physical: 1, Hybrid: 2 }
+  enum status: { in_active: 0, active: 1 }
 
   def self.search(term)
     where(
