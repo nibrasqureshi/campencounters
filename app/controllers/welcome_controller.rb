@@ -2,5 +2,8 @@
 
 # Welcome controller
 class WelcomeController < ApplicationController
-  def index; end
+  def index
+    @camps = Camp.active
+    @camp = Camp.new
+  end
 end

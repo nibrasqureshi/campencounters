@@ -15,15 +15,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
     end
   end
 
-  def show
-    if current_user.type? == 'Admin'
-      render 'users#index'
-    elsif current_user.type == 'SuperAdmin'
-      render 'users#index'
-    else
-      redirect_to root_path
-    end
-  end
+  def show; end
 
   def edit; end
 
