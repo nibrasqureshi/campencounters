@@ -2,12 +2,13 @@
 
 # User model
 class User < ApplicationRecord
+  has_one_attached :avatar
   paginates_per 5
   attribute :agreement, :integer
 
   validates :agreement, acceptance: { accept: 1 }
   # Include default devise modules. Others available are:
-  #   :lockable, :timeoutable, :trackable and :omniauthable
+  #   :invitable :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
@@ -17,8 +18,8 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: { case_sensitive: true },
                        format: { with: /\A(?=.*\d)(?=.*([A-Z]))([\x20-\x7E]|[^\x00-\x7F]){6,100}\z/ }
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
 
   def self.search(term)
     where(

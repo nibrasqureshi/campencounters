@@ -1,0 +1,54 @@
+<div class="container-fluid w-75 border rounded shadow mt-5 p-4 bg-light ">
+  <table class="table">
+		<%= form_tag admin_camps_path, method: :get do %>
+		<div class="row">
+			<div class="col">
+				<div class="input-group input-group-sm" style="width: 250px;">
+					<%= search_field_tag :search, params[:search], placeholder: 'Search here', class: 'form-control' %>
+					<%= submit_tag "search", class: "btn btn-success"%>
+				</div>
+			</div>
+			<div class="col">
+				<div class="input-group input-group-sm" style="width: 250px; margin-left: 80%;">
+					<%= link_to "Add camp", new_admin_camp_path,  class: "btn btn-success mb-1 " %>
+				</div>
+        <div class="input-group input-group-sm" style="width: 250px; margin-left: 71%;">
+          <%= link_to("Generate Report", admin_camps_path(format: :csv), class: "btn btn-success",) %>
+				</div>
+			</div>	
+		</div>
+
+		<% end %>
+		<thead>
+			<tr style="text-decoration:none ;">
+				<th scope="col"><%= sortable "id", "Camp Id" %></th>
+				<th scope="col"><%= sortable "camp_title", "Camp Title" %></th>
+				<th scope="col"><%= sortable "camp_type", "Camp Type" %></th>
+        <th scope="col"><%= sortable "locations", "Locations" %></th>
+				<th scope="col"><%= sortable "parent_registration_time", "Parent Registration Time" %></th>
+				<th scope="col"><%= sortable "applicant_registration_time", "Applicant Registration Time" %></th>
+        <th scope="col"><%= sortable "created_at", "Created" %></th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<% @camps.each do |camp| %>
+			<tbody>
+				<tr>
+					<th scope="row"><%= camp.id %></th>
+					<td><%= camp.camp_title %></td>
+					<td><%= camp.camp_type %></td>
+          <td><%= check_data_presence(camp.locations) %></td>
+					<td><%= check_data_presence(camp.applicant_registration_time) %></td>
+					<td><%= check_data_presence(camp.parent_registration_time) %></td>
+					<td><%= camp.created_at.strftime("%a, %b %-d, %Y") %></td>
+					<td>
+						<%= link_to image_tag("search.png"), admin_camp_path(camp) %>
+						<%= link_to image_tag("equalizer.png"), edit_admin_camp_path(camp) %>
+						<%= link_to image_tag("delete.png"), admin_camp_path(camp), method: :delete, data: {Confirm: "Are you sure?"}  %>
+					</td>
+				</tr>
+			</tbody>	
+		<% end %>
+	</table> 
+	<%= paginate @camps, theme: 'bootstrap-5' %>
+</div>

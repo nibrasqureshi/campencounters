@@ -1,6 +1,7 @@
 # frozen_string_literal:true
 
 # this is a user controller class for admin
+# rubocop:disable all
 class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
@@ -10,6 +11,12 @@ class Admin::UsersController < ApplicationController
              else
                User.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data csv_policy(User.all, attributes).to_csv, filename: "userinfo-#{Date.today}.csv"
+      end
+    end
   end
 
   def show; end
@@ -22,7 +29,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(post_params)
+    if @user.update(user_params)
       redirect_to([:admin, @user])
     else
       render 'edit'
@@ -34,9 +41,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(post_params)
+    @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      UserMailer.welcome_email(@user).deliver_now
+      redirect_to admin_users_path
     else
       render 'new'
     end
@@ -48,8 +56,8 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def post_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password, :avatar)
   end
 
   def sort_column
@@ -58,5 +66,13 @@ class Admin::UsersController < ApplicationController
 
   def sort_direction
     params[:direction] || 'asc'
+  end
+
+  def csv_policy(records, attributes)
+    CsvExport.new(records, attributes)
+  end
+
+  def attributes
+    %w[id first_name last_name email phone country created_at]
   end
 end
