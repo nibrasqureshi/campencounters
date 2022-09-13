@@ -13,7 +13,9 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data ExportService::UserExport.new(User.all).to_csv, filename: "userinfo-#{Date.today}.csv" }
+      format.csv do
+        send_data csv_policy(User.all, attributes).to_csv, filename: "userinfo-#{Date.today}.csv"
+      end
     end
   end
 
@@ -64,5 +66,13 @@ class Admin::UsersController < ApplicationController
 
   def sort_direction
     params[:direction] || 'asc'
+  end
+
+  def csv_policy(records, attributes)
+    CsvExport.new(records, attributes)
+  end
+
+  def attributes
+    %w[id first_name last_name email phone country created_at]
   end
 end

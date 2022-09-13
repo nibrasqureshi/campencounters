@@ -11,9 +11,12 @@ class Admin::CampsController < ApplicationController
              else
                Camp.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+
     respond_to do |format|
       format.html
-      format.csv { send_data ExportService::CampExport.new(Camp.all).to_csv, filename: "campinfo-#{Date.today}.csv" }
+      format.csv do
+        send_data csv_policy(Camp.all, Camp.column_names).to_csv, filename: "campinfo-#{Date.today}.csv"
+      end
     end
   end
 
@@ -69,5 +72,9 @@ class Admin::CampsController < ApplicationController
 
   def sort_direction
     params[:direction] || 'asc'
+  end
+
+  def csv_policy(records, attributes)
+    CsvExport.new(records, attributes)
   end
 end
