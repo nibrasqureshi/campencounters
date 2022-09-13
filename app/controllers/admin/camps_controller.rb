@@ -83,6 +83,7 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def csv_policy(records, attributes)
     CsvExport.new(records, attributes)
+  end
 
   def set_camps
     @camps = if params[:search].present?
