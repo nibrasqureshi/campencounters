@@ -1,16 +1,12 @@
 # frozen_string_literal:true
 
 # this is a user controller class for admin
-# rubocop:disable all
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+  before_action :set_users, only: %i[index]
   before_action :find_user, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
+
   def index
-    @users = if params[:search].present?
-               User.search(params[:search]).page(params[:page])
-             else
-               User.order("#{sort_column} #{sort_direction}").page(params[:page])
-             end
     respond_to do |format|
       format.html
       format.csv do
@@ -19,7 +15,15 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    if current_user.type? == 'Admin'
+      render 'users#index'
+    elsif current_user.type == 'SuperAdmin'
+      render 'users#index'
+    else
+      redirect_to root_path
+    end
+  end
 
   def edit; end
 
@@ -74,5 +78,13 @@ class Admin::UsersController < ApplicationController
 
   def attributes
     %w[id first_name last_name email phone country created_at]
+  end
+
+  def set_users
+    @users = if params[:search].present?
+               User.search(params[:search]).page(params[:page])
+             else
+               User.order("#{sort_column} #{sort_direction}").page(params[:page])
+             end
   end
 end

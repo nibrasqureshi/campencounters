@@ -25,30 +25,15 @@
 				<th scope="col"><%= sortable "camp_title", "Camp Title" %></th>
 				<th scope="col"><%= sortable "camp_type", "Camp Type" %></th>
         <th scope="col"><%= sortable "locations", "Locations" %></th>
-				<th scope="col"><%= sortable "parent_registration_time", "Parent Registration Time" %></th>
-				<th scope="col"><%= sortable "applicant_registration_time", "Applicant Registration Time" %></th>
+        <th scope="col"><%= sortable "status", "Status" %></th>
+				<th scope="col"><%= sortable "applicant_registration_date", "Registration Date" %></th>
         <th scope="col"><%= sortable "created_at", "Created" %></th>
 				<th scope="col">Actions</th>
 			</tr>
 		</thead>
-		<% @camps.each do |camp| %>
-			<tbody>
-				<tr>
-					<th scope="row"><%= camp.id %></th>
-					<td><%= camp.camp_title %></td>
-					<td><%= camp.camp_type %></td>
-          <td><%= check_data_presence(camp.locations) %></td>
-					<td><%= check_data_presence(camp.applicant_registration_time) %></td>
-					<td><%= check_data_presence(camp.parent_registration_time) %></td>
-					<td><%= camp.created_at.strftime("%a, %b %-d, %Y") %></td>
-					<td>
-						<%= link_to image_tag("search.png"), admin_camp_path(camp) %>
-						<%= link_to image_tag("equalizer.png"), edit_admin_camp_path(camp) %>
-						<%= link_to image_tag("delete.png"), admin_camp_path(camp), method: :delete, data: {Confirm: "Are you sure?"}  %>
-					</td>
-				</tr>
-			</tbody>	
-		<% end %>
+		<tbody id="camps">
+      <%= render 'camps' %>
+    </tbody>
 	</table> 
 	<%= paginate @camps, theme: 'bootstrap-5' %>
 </div>
