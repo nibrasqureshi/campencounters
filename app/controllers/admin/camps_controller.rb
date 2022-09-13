@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 # camps controller for admin
+# rubocop:disable all
 class Admin::CampsController < ApplicationController
   before_action :find_camp, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
-
   def index
     @camps = if params[:search].present?
                Camp.search(params[:search]).page(params[:page])
              else
                Camp.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
-
     respond_to do |format|
       format.html
       format.csv do

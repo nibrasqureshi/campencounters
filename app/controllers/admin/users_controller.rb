@@ -1,6 +1,7 @@
 # frozen_string_literal:true
 
 # this is a user controller class for admin
+# rubocop:disable all
 class Admin::UsersController < ApplicationController
   before_action :find_user, only: %i[show edit update destroy]
   helper_method :sort_column, :sort_direction
@@ -10,7 +11,6 @@ class Admin::UsersController < ApplicationController
              else
                User.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
-
     respond_to do |format|
       format.html
       format.csv do
