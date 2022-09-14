@@ -1,6 +1,12 @@
 @import "bootstrap";
-body{
-
-    background-image: url(night-campfire-night.jpg);
-    z-index: 0;
+body{	
+	background-image: url(night-campfire-night.jpg);
+	z-index: 0;
+}
+.control-me {
+	display: none;
+}
+  
+#toggle:checked ~ .control-me {
+	display: block;
 }

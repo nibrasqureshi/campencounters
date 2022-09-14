@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     sessions: 'sessions'
   }
   root 'welcome#index'
+  resources :camp_form_steps
   namespace :admin do
     resources :users
 

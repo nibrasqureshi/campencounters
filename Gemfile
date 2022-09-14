@@ -38,10 +38,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise_invitable'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'wicked'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'popper_js', '~> 2.11.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

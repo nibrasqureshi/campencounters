@@ -1,14 +1,3 @@
 <div class="container-fluid w-50 border rounded shadow mt-5 p-4 text-center bg-light">
 	<h1>Hello camp Encounters!!!</h1>
-	<%= form_for @camp, url:root_path, method: :get do |f| %>
-	<% @camps.each do |camp| %>
-		<div class="col">
-			<div class="form-outline">
-				<%= f.radio_button :id, camp.id %>
-				<%= f.label :id, camp.camp_title %>
-			</div>
-		</div>
-	<% end %>
-	<%= f.submit  class: 'btn btn-primary btn-block mb-4' %>
-  <% end %>
 </div>

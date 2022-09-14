@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   paginates_per 5
   attribute :agreement, :integer
+  enum gender: { female: 0, male: 1, other: 2 }
+  enum camp_type: { virtual_camp: 0, physical_camp: 1, hybrid_camp: 2 }
 
   validates :agreement, acceptance: { accept: 1 }
   # Include default devise modules. Others available are:
