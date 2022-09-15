@@ -70,7 +70,7 @@ class CampFormStepsController < ApplicationController
   end
 
   def check_camp_validity
-    return if params[:camp][:id].blank?
+    return next_wizard_path if params[:camp].blank?
     @camp = Camp.find_by(id: params[:camp][:id])
     return (redirect_to camp_form_step_path(:select_camp), alert:"The registration date has ended for this camp. Select other!") if @camp.applicant_registration_date_end <= Date.today
   end
