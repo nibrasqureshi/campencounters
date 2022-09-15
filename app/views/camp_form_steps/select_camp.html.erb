@@ -1,10 +1,10 @@
 <div class="container-fluid w-50 border rounded shadow mt-5 mb-5 p-4 text-center bg-light">
+	<%= form_for @camp, url:next_wizard_path, method: "PUT" do |f| %>
 	<div class="progress">
 		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
 	</div>
 	<h1 class="mt-3">Hello camp Encounters!!!</h1>
 	<h3 class="mt-3">select any available camp</h3>
-	<%= form_for @camp, url:next_wizard_path, method: "PUT" do |f| %>
 	<% @camps.each do |camp| %>
 		
 			<div class="form-check">

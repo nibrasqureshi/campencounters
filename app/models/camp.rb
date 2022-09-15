@@ -2,6 +2,7 @@
 
 # camp model
 class Camp < ApplicationRecord
+  paginates_per 5
   enum camp_type: { Virtual: 0, Physical: 1, Hybrid: 2 }
   enum status: { in_active: 0, active: 1 }
 

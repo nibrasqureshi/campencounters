@@ -4,7 +4,7 @@
 class Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :set_users, only: %i[index]
   before_action :find_user, only: %i[show edit update destroy]
-  before_action :authorize_request, except: %i[new]
+  before_action :authorize_request
   helper_method :sort_column, :sort_direction
   
   def index
@@ -85,4 +85,3 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
     authorize(current_user) 
   end
 end
-# , policy_class: 'UserPolicy'

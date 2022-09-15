@@ -4,6 +4,7 @@
 class Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :set_camps, only: %i[index]
   before_action :find_camp, only: %i[show edit update destroy update_status]
+  before_action :authorize_request
   helper_method :sort_column, :sort_direction
 
   def index
@@ -91,5 +92,9 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
              else
                Camp.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+  end
+
+  def authorize_request
+    authorize(current_user) 
   end
 end

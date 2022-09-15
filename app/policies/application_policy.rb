@@ -9,45 +9,30 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    false
+    true
   end
 
   def create?
-    false
+    true
   end
 
   def new?
-    create?
+    true
   end
 
   def update?
-    false
+    true
   end
 
   def edit?
-    update?
+    true
   end
 
   def destroy?
-    false
-  end
-
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      raise NotImplementedError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
+    true
   end
 end
