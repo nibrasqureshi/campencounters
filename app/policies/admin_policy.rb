@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# this is Admin policy
 class AdminPolicy < ApplicationPolicy
   def index?
     admin_user?
@@ -19,6 +20,10 @@ class AdminPolicy < ApplicationPolicy
 
   def update?
     edit?
+  end
+
+  def update_status?
+    admin_user?
   end
 
   def destroy?

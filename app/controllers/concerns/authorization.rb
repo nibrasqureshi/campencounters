@@ -21,7 +21,7 @@ module Authorization
       pundit_authorize(*args)
     end
 
-    def user_not_authorized(exception)
+    def user_not_authorized(_exception)
       flash[:alert] = 'Not Authorized.'
       return redirect_to root_path if current_user.present?
 

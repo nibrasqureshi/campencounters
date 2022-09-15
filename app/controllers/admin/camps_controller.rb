@@ -95,6 +95,6 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def authorize_request
-    authorize(current_user) 
+    authorize(current_user)
   end
 end

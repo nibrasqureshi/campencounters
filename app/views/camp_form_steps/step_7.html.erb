@@ -20,6 +20,7 @@
     <% end %>
   </div>
 
+  <%= f.hidden_field :profile_percentage, value: '100' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>
   <%= link_to "Previous", previous_wizard_path, class: 'btn btn-warning btn-block mt-4' %>

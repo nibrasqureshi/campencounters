@@ -1,0 +1,15 @@
+<div class="container-fluid w-50 border rounded shadow mt-5 p-4 text-center bg-light">
+	<div>
+		<h4>Your progress for Registration </h4>
+			<div class="progress">
+				<div
+					class="progress-bar progress-bar-striped bg-success"
+					role="progressbar"
+					aria-valuenow="<%= @user.profile_percentage %>"
+					aria-valuemax="100"
+					style="width: <%= @user.profile_percentage %>%">
+					<%= @user.profile_percentage %>%
+				</div>
+			</div>
+	</div>
+</div>

@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   before_action :find_user, only: %i[show edit update destroy]
   before_action :authorize_request
   helper_method :sort_column, :sort_direction
-  
+
   def index
     respond_to do |format|
       format.html
@@ -82,6 +82,6 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def authorize_request
-    authorize(current_user) 
+    authorize(current_user)
   end
 end

@@ -35,6 +35,7 @@
 		<div class="d-flex align-items-end">
 			<!-- Avatar -->
 				<div class="btn-group dropstart">
+					<% if user_signed_in? %>
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 						Account
 					</button>
@@ -42,6 +43,7 @@
 						<li><button class="dropdown-item" type="button"><%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %></button></li>
 						<li><button class="dropdown-item" type="button"><%= link_to "Logout", destroy_user_session_path, method: 'delete', class: "dropdown-item" %></button></li>
 					</ul>
+					<% end %>
 				</div>
 			</div>
 		</div>
