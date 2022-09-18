@@ -1,8 +1,55 @@
-<div class="container-fluid w-25 border rounded shadow mt-5 p-4 bg-light  text-center">  
-	<%= render 'profile_pic' %>
-  
-	<h3>User:<%= @user.id %></h3>
-	<p> First Name: <%= @user.first_name %></p>
-	<p> Last Name: <%= @user.last_name %></p>
-	<p> Email: <%= @user.email %></p>
-</div>	
+<div class="container-fluid w-50 border rounded shadow mt-5 p-4 bg-light"> 
+  <h3  class="text-center mt-3">Application</h3>
+  <div class="text-center mb-5 mt-5">
+    <%= render 'admin/users/profile_pic' %>
+  </div>
+
+  <%= hidden_field_tag :user_id, value: @user.id %>
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline" >
+       <p><b>First Name:</b> <%= @user.first_name %></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <p><b>Last Name:</b> <%= @user.last_name %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-outline mb-4 text-center">
+    <p><b>Email:</b> <%= @user.email %></p>
+  </div> 
+ 
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline" >
+       <p><b>Gender:</b> <%= @user.gender %></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <p> <b>Phone no:</b>  <%= @user.phone %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline" >
+       <p> <b>Country:</b>  <%= @user.country %></p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <p> <b>Feedback on Camps:</b>  <%= @user.feedback %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-outline mb-4 text-center">
+    <p> <b>Form status:</b> <%= @user.submission_status %></p>
+  </div> 
+ 
+</div>

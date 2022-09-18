@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password, :password_confirmation, :avatar, :profile_percentage, :submission_status)
   end
 
   def sort_column

@@ -39,10 +39,12 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 						Account
 					</button>
+					
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						<li><button class="dropdown-item" type="button"><%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %></button></li>
+						<li><button class="dropdown-item" type="button"><%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %></button></li>				
 						<li><button class="dropdown-item" type="button"><%= link_to "Logout", destroy_user_session_path, method: 'delete', class: "dropdown-item" %></button></li>
 					</ul>
+					
 					<% end %>
 				</div>
 			</div>

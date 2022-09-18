@@ -9,30 +9,22 @@
     <div class="col">
       <div class="form-outline" >
         <%= f.label :first_name %><br />
-        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+        <%= f.text_field :first_name, autofocus: true, class: "form-control", required:true %>
       </div>
     </div>
     <div class="col">
       <div class="form-outline">
         <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+        <%= f.text_field :last_name, autofocus: true, class: "form-control", required:true %>
       </div>
     </div>
   </div>
 
   <div class="form-outline mb-4">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-  </div> 
- 
-  <div class="form-outline mb-4" >
-    <%= f.label :new_password %> <br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required:true %>
   </div>
+  <%= f.hidden_field :camp_id, value: @user.camp_id %>
   <%= f.hidden_field :profile_percentage, value: '30' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>

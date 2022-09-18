@@ -10,9 +10,11 @@
 			<div class="form-check">
 				<%= f.radio_button :id, camp.id, :checked => 'checked' %>
 				<%= f.label :id, camp.camp_title, class: "form-check-label" %>
+			
 			</div>
-    
 	<% end %>
+	<br>
+
 	<%= f.submit 'select', class: 'btn btn-success btn-block mt-4' %>
   
   <% end %>

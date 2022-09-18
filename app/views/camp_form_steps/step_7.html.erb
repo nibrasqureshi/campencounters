@@ -8,18 +8,11 @@
 
   <div class="form-outline">
     <%= f.label :camp_type %><br />
-    <%= f.select :camp_type, User.camp_types.keys,{}, class: "form-select" %>
+    <%= f.select :camp_type, User.camp_types.keys,{}, class: "form-select", required:true %>
   </div>
-
-  <div class="form-outline mt-2 mb-2" >
-    <%= f.label :new_password %> <br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
+  
+  <%= f.hidden_field :camp_id, value: session[:camp_id  ] %>
+  <%= f.hidden_field :submission_status, value: 'submitted' %>
   <%= f.hidden_field :profile_percentage, value: '100' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>

@@ -16,17 +16,10 @@
     <div class="control-me">
     <%= f.text_field :feedback, class: 'form-control' %>
     </div>
-
-  <div class="form-outline mt-2 mb-2" >
-    <%= f.label :new_password %> <br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+  <div class="form-outline mb-2">
   <%= f.hidden_field :profile_percentage, value: '80' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>
   <%= link_to "Previous", previous_wizard_path, class: 'btn btn-warning btn-block mt-4' %>
+  </div>
   <% end %>

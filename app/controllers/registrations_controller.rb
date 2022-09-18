@@ -8,6 +8,17 @@ class RegistrationsController < Devise::RegistrationsController
 
   def index; end
 
+  def update_resource(resource, params)
+    if !params[:password].blank?
+      resource.password = params[:password]
+      resource.password_confirmation = params[:password_confirmation]
+    else
+        super
+    end
+  
+    resource.update_without_password(params)
+  end
+
   protected
 
   def configure_permitted_parameters # rubocop:disable Metrics/MethodLength
@@ -31,7 +42,7 @@ class RegistrationsController < Devise::RegistrationsController
         :last_name,
         :email,
         :password,
-        :current_password,
+        :password_confirmation,
         :phone,
         :country,
         :avatar

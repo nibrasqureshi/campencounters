@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :welcome
   root 'welcome#index'
   resources :camp_form_steps
+
   namespace :admin do
     resources :users
-
     resources :camps do
       patch :update_status, on: :member
     end

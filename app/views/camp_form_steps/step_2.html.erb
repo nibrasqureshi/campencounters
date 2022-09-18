@@ -14,14 +14,7 @@
       <%= f.radio_button :gender, "other" %>
       <%= f.label :gender_other, "Other" %>
     </div>
-    <div class="form-outline mb-4" >
-      <%= f.label :new_password %> <br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
+   
     <%= f.hidden_field :profile_percentage, value: '40' %>
     <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
     <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>

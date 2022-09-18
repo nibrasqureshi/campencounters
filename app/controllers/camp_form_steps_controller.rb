@@ -15,21 +15,29 @@ class CampFormStepsController < ApplicationController
         :step_5,
         :step_6,
         :step_7,
-        :step_8
+        :step_8,
+        :final
 
   def show
     @user = current_user
     @camps = Camp.active
-    @camp = Camp.new
+    @camp = Camp.new  
     render_wizard
   end
 
   def update
+
     @user = current_user
     @user.update(user_params) if wizard_steps.include?(step)
 
+    if params[:id] == 'introduction'
+      session[:camp_id] = params[:camp][:id]
+    end
+  
+    # update_camp if step == last
     sign_in(@user, bypass: true)
     render_wizard
+    # @camp = params[:camp_id] if params[:camp_id]
   end
 
   def wicked_finish; end
@@ -44,16 +52,16 @@ class CampFormStepsController < ApplicationController
             :phone, 
             :country, 
             :email, 
-            :password, 
             :avatar,
             :gender,
-            :password,
             :phone,
             :country,
             :avatar,
             :feedback,
+            :camp_id,
             :camp_type,
             :profile_percentage,
+            :submission_status,
             id: :user_id
           )
   end
@@ -66,7 +74,8 @@ class CampFormStepsController < ApplicationController
         :step_5,
         :step_6,
         :step_7,
-        :step_8
+        :step_8,
+        :final
     ]
   end
 
