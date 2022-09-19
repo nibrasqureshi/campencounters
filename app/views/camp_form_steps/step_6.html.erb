@@ -6,8 +6,8 @@
   <h4>can you tell us it's name?</h4>
   <%= form_for @user, url:next_wizard_path, method: "PUT" do |f| %> 
   <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :camp_id, name: 'camp[id]', value: @camp_id %>
 
- 
     <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
     <label class="btn btn-outline-primary mb-2" for="btncheck2">No</label>
     
@@ -16,10 +16,13 @@
     <div class="control-me">
     <%= f.text_field :feedback, class: 'form-control' %>
     </div>
+
   <div class="form-outline mb-2">
-  <%= f.hidden_field :profile_percentage, value: '80' %>
+
+  <%= f.hidden_field :submission_status, value: 'in_progress' %>
+  <%= f.hidden_field :profile_percentage, value: '60' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>
-  <%= link_to "Previous", previous_wizard_path, class: 'btn btn-warning btn-block mt-4' %>
+  <%= link_to "Previous", previous_wizard_path(camp: {id: @camp_id}), class: 'btn btn-warning btn-block mt-4' %>
   </div>
   <% end %>

@@ -6,14 +6,14 @@
   <%= render 'admin/users/profile_pic' %>
   <%= form_for @user, url:next_wizard_path, method: "PUT" do |f| %> 
   <%= f.hidden_field :user_id, value: @user.id %>
-
+  <%= f.hidden_field :camp_id, name: 'camp[id]', value: @camp_id %>
   <div class="form-outline mb-4">
     <%= f.label :Profile_photo %><br />
     <%= f.file_field :avatar %>
   </div>
 
-  <%= f.hidden_field :profile_percentage, value: '70' %>
+  <%= f.hidden_field :profile_percentage, value: '50' %>
   <%= f.submit "Next",class: 'btn btn-success btn-block mt-4'  %>
   <%= link_to "skip", next_wizard_path, class: 'btn btn-secondary btn-block mt-4' %>
-  <%= link_to "Previous", previous_wizard_path, class: 'btn btn-warning btn-block mt-4' %>
+  <%= link_to "Previous", previous_wizard_path(camp: {id: @camp_id}), class: 'btn btn-warning btn-block mt-4' %>
   <% end %>

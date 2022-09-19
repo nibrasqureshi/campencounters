@@ -21,23 +21,17 @@ class CampFormStepsController < ApplicationController
   def show
     @user = current_user
     @camps = Camp.active
+    @camp_id = params[:camp][:id] if params.dig(:camp, :id).present?
     @camp = Camp.new  
     render_wizard
   end
 
   def update
-
     @user = current_user
     @user.update(user_params) if wizard_steps.include?(step)
-
-    if params[:id] == 'introduction'
-      session[:camp_id] = params[:camp][:id]
-    end
-  
-    # update_camp if step == last
+    @camp_id = params[:camp][:id] if params.dig(:camp, :id).present?
     sign_in(@user, bypass: true)
     render_wizard
-    # @camp = params[:camp_id] if params[:camp_id]
   end
 
   def wicked_finish; end

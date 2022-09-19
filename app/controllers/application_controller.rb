@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   include Authorization
   before_action :set_cache_headers
 
- private 
+  private
 
   def set_cache_headers
-    response.headers["Cache-Control"] = "no-cache, no-store"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
+    response.headers['Cache-Control'] = 'no-cache, no-store'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
   end
 end

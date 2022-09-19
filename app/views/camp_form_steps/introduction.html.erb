@@ -2,8 +2,8 @@
   <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
   </div>
-  <%= form_for @user, url:next_wizard_path, method: "PUT" do |f| %>
-
+  <%= form_for @user, url:next_wizard_path(camp: {id: @camp_id}), method: "PUT" do |f| %>
+  <%= f.hidden_field :camp_id, name: 'camp[id]', value: @camp_id %>
 <h1>Introduction</h1>
 
   <p style="text-align: justify ;">
@@ -23,9 +23,7 @@
 
        I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN ACCORDANCE WITH THE PRIVACY POLICY (Add static link).
   </p>
-  <%= f.hidden_field :camp_id, value: @camp %>
   <%= f.submit 'select', class: 'btn btn-success btn-block mt-4' %>
-  <%= link_to "Next", next_wizard_path, class: 'btn btn-success btn-block mt-4' %>
   <% end %>
 
 </div>

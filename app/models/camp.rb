@@ -5,7 +5,7 @@ class Camp < ApplicationRecord
   paginates_per 5
 
   has_many :users, dependent: :destroy
-  belongs_to :admin, class_name: "User"
+  belongs_to :admin, class_name: 'User'
 
   enum camp_type: { Virtual: 0, Physical: 1, Hybrid: 2 }
   enum status: { in_active: 0, active: 1 }
