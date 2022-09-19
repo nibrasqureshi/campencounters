@@ -22,10 +22,11 @@
 				<li class="nav-item">
 					<%= link_to "Dashboard", camp_form_steps_path, class: "nav-link" %>
 				</li>
+				<% if !user_signed_in?  %>
 				<li class="nav-item">
 					<%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
 				</li>
-		
+				<% end %>
 			</ul>
 			<!-- Left links -->
 		</div>

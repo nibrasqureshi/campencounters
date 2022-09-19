@@ -19,15 +19,15 @@ class AdminPolicy < ApplicationPolicy
   end
 
   def update?
-    edit?
+    admin_user? && user.id == post.id
   end
 
   def update_status?
-    admin_user?
+   admin_user? 
   end
 
   def destroy?
-    admin_user?
+    admin_user? 
   end
 
   private
@@ -35,4 +35,9 @@ class AdminPolicy < ApplicationPolicy
   def admin_user?
     user.is_a?(Admin)
   end
+
+  def post
+    model
+  end
+
 end
