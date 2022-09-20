@@ -26,6 +26,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'pundit'
+gem "interactor-rails", "~> 2.0"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -40,7 +41,9 @@ gem 'devise_invitable'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'wicked'
-# Use Capistrano for deployment
+# Background jobs
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 # gem 'capistrano-rails', group: :development
 gem 'popper_js', '~> 2.11.5'
 # Reduces boot times through caching; required in config/boot.rb
