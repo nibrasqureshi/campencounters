@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # camps controller for admin
-class Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+class Api::Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :authorize_request
   before_action :set_camps, only: %i[index]
   before_action :find_camp, only: %i[show edit update destroy update_status]
@@ -39,7 +39,6 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def create
     result = CreateCamps.call(camp_params: camp_params)
-    # @camp = Camp.new(camp_params)
     @camp = result.camp
     if result.success?
       redirect_to admin_camps_path

@@ -15,5 +15,14 @@ Rails.application.routes.draw do
       patch :update_status, on: :member
     end
   end
+
+  namespace :api do
+    namespace :admin do
+      resources :users
+      resources :camps do
+        patch :update_status, on: :member
+      end
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
