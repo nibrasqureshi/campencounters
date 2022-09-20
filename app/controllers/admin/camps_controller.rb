@@ -2,6 +2,7 @@
 
 # camps controller for admin
 class Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+  before_action :authorize_request
   before_action :set_camps, only: %i[index]
   before_action :find_camp, only: %i[show edit update destroy update_status]
   helper_method :sort_column, :sort_direction
@@ -47,7 +48,7 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def update_status
     @camp.update(status: params[:status])
-    @camps = Camp.all
+    @camps = current_user.camps
   end
 
   private
@@ -69,6 +70,7 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
       :parent_registration_time,
       :parent_registration_time_end,
       :status,
+      :admin_id,
       locations: []
     )
   end
@@ -89,7 +91,11 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
     @camps = if params[:search].present?
                Camp.search(params[:search]).page(params[:page])
              else
-               Camp.order("#{sort_column} #{sort_direction}").page(params[:page])
+               current_user.camps.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+  end
+
+  def authorize_request
+    authorize(current_user)
   end
 end

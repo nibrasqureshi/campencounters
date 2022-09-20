@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 # rubocop:disable all
-ActiveRecord::Schema.define(version: 20_220_913_105_424) do
+ActiveRecord::Schema.define(version: 20_220_916_134_509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(version: 20_220_913_105_424) do
     t.time 'applicant_registration_time_end'
     t.time 'parent_registration_time_end'
     t.integer 'status', default: 0, null: false
+    t.bigint 'admin_id'
+    t.index ['admin_id'], name: 'index_camps_on_admin_id'
   end
+
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -79,9 +82,18 @@ ActiveRecord::Schema.define(version: 20_220_913_105_424) do
     t.string 'phone'
     t.string 'country'
     t.string 'type'
+    t.integer 'gender'
+    t.string 'feedback'
+    t.integer 'camp_type'
+    t.integer 'profile_percentage', default: 10
+    t.integer 'submission_status', default: 0
+    t.bigint 'camp_id'
+    t.index ['camp_id'], name: 'index_users_on_camp_id'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
+  add_foreign_key 'camps', 'users', column: 'admin_id'
+  add_foreign_key 'users', 'camps'
 end

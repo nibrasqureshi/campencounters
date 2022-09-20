@@ -1,0 +1,5 @@
+:schedule:
+  DeleteTimeOutCampsJob: { every: '1m' }
+
+:queues:
+  - default

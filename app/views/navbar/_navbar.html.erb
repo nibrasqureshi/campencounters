@@ -11,18 +11,24 @@
 			<a class="navbar-brand" href="#">Camp Encounters</a>
 			<!-- Left links -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<%= link_to "Dashboard", root_path, class: "nav-link" %>
-				</li>
-				<li class="nav-item">
-					<%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-				</li>
+				<% if current_user.is_a?(Admin)%>
 				<li class="nav-item">
 					<%= link_to "User Panel", admin_users_path, class: "nav-link" %>
 				</li>
         <li class="nav-item">
 					<%= link_to "Camps Panel", admin_camps_path, class: "nav-link" %>
 				</li>
+				<% end %>
+				<% if user_signed_in? && !current_user.is_a?(Admin) && !current_user.camp_id.present? %>
+				<li class="nav-item">
+					<%= link_to "Join Camp", camp_form_steps_path, class: "nav-link" %>
+				</li>
+				<% end %>
+				<% if !user_signed_in?  %>
+				<li class="nav-item">
+					<%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+				</li>
+				<% end %>
 			</ul>
 			<!-- Left links -->
 		</div>
@@ -32,13 +38,17 @@
 		<div class="d-flex align-items-end">
 			<!-- Avatar -->
 				<div class="btn-group dropstart">
+					<% if user_signed_in? %>
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 						Account
 					</button>
+					
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-						<li><button class="dropdown-item" type="button"><%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %></button></li>
+						<li><button class="dropdown-item" type="button"><%= link_to profile_text(current_user), swap_path(current_user), class: "dropdown-item" %></button></li>				
 						<li><button class="dropdown-item" type="button"><%= link_to "Logout", destroy_user_session_path, method: 'delete', class: "dropdown-item" %></button></li>
 					</ul>
+					
+					<% end %>
 				</div>
 			</div>
 		</div>

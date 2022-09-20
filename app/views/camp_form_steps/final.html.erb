@@ -52,4 +52,8 @@
     <p> <b>Form status:</b> <%= @user.submission_status %></p>
   </div> 
  
+  <div class="form-outline mb-4 text-center">
+    <%= link_to "Finish", next_wizard_path, class: 'btn btn-success mt-4' %>
+  </div>
+  
 </div>

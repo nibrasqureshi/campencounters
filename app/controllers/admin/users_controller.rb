@@ -4,6 +4,7 @@
 class Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :set_users, only: %i[index]
   before_action :find_user, only: %i[show edit update destroy]
+  before_action :authorize_request
   helper_method :sort_column, :sort_direction
 
   def index
@@ -15,15 +16,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
     end
   end
 
-  def show
-    if current_user.type? == 'Admin'
-      render 'users#index'
-    elsif current_user.type == 'SuperAdmin'
-      render 'users#index'
-    else
-      redirect_to root_path
-    end
-  end
+  def show; end
 
   def edit; end
 
@@ -61,7 +54,8 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :phone, :country, :email, :password, :password_confirmation,
+                                 :avatar, :profile_percentage, :submission_status)
   end
 
   def sort_column
@@ -86,5 +80,9 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
              else
                User.order("#{sort_column} #{sort_direction}").page(params[:page])
              end
+  end
+
+  def authorize_request
+    authorize(current_user)
   end
 end
