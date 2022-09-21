@@ -59,12 +59,13 @@
 								<%= user.profile_percentage %>%
 							</div>
 					</td>
-
+					<% if !user.is_a?(Admin)%>
 					<td>
 						<%= link_to image_tag("search.png"), admin_user_path(user) %>
 						<%= link_to image_tag("equalizer.png"), edit_admin_user_path(user) %>
 						<%= link_to image_tag("delete.png"), admin_user_path(user), method: :delete, data: {Confirm: "Are you sure?"}  %>
 					</td>
+					<% end %>
 				</tr>
 			</tbody>	
 		<% end %>

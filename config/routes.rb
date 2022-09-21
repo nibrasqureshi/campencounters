@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    post :auth, to: 'authentication#create'
     namespace :admin do
       resources :users
       resources :camps do

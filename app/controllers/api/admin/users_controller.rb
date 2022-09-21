@@ -1,19 +1,14 @@
 # frozen_string_literal:true
 
 # this is a user controller class for admin
-class Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+class Api::Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :set_users, only: %i[index]
   before_action :find_user, only: %i[show edit update destroy]
   before_action :authorize_request
   helper_method :sort_column, :sort_direction
 
   def index
-    respond_to do |format|
-      format.html
-      format.csv do
-        send_data csv_policy(User.all, attributes).to_csv, filename: "userinfo-#{Date.today}.csv"
-      end
-    end
+    @users = User.all
   end
 
   def show; end

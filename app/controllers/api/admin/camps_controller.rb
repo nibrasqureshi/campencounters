@@ -8,12 +8,7 @@ class Api::Admin::CampsController < ApplicationController # rubocop:disable Styl
   helper_method :sort_column, :sort_direction
 
   def index
-    respond_to do |format|
-      format.html {}
-      format.csv do
-        send_data ExportService::CampExport.new(Camp.all).to_csv, filename: "campinfo-#{Date.today}.csv"
-      end
-    end
+    @camps = Camp.all
   end
 
   def show; end

@@ -39,7 +39,6 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def create
     result = CreateCamps.call(camp_params: camp_params)
-    # @camp = Camp.new(camp_params)
     @camp = result.camp
     if result.success?
       redirect_to admin_camps_path

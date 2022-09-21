@@ -25,6 +25,7 @@ gem 'bootstrap5-kaminari-views'
 gem 'devise'
 gem 'interactor-rails', '~> 2.0'
 gem 'jquery-rails'
+gem 'jwt'
 gem 'kaminari'
 gem 'pundit'
 # Use CoffeeScript for .coffee assets and views
