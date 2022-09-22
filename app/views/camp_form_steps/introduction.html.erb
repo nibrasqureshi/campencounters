@@ -3,7 +3,7 @@
     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-label="Animated striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
   </div>
   <%= form_for @user, url:next_wizard_path(camp: {id: @camp_id}), method: "PUT" do |f| %>
-  <%= f.hidden_field :camp_id, name: 'camp[id]', value: @camp_id %>
+  <%= f.hidden_field :camp_id, name: 'camp[id]', value: current_user.selected_camp %>
 <h1>Introduction</h1>
 
   <p style="text-align: justify ;">

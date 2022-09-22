@@ -26,7 +26,8 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def update
-    if @user.update(user_params)
+    result = UpdateUsers.call(user: @user, user_params: user_params)
+    if result.updated_user
       redirect_to([:admin, @user])
     else
       render 'edit'
@@ -39,7 +40,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
 
   def create
     result = CreateUsers.call(user_params: user_params)
-    @user = result.camp
+    @user = result.user
     if result.success?
       UserMailer.welcome_email(@user).deliver_now
       redirect_to admin_users_path

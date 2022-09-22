@@ -16,7 +16,7 @@ module ApplicationHelper
     if camp_form_steps_completed?(user)
       r.edit_user_registration_path
     else
-      r.camp_form_step_path("step_#{user.profile_percentage / 10}".to_sym)
+      r.camp_form_step_path("step_#{user.profile_percentage / 10}".to_sym, camp: { id: user.selected_camp })
     end
   end
 

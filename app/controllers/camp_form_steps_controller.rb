@@ -21,15 +21,14 @@ class CampFormStepsController < ApplicationController
   def show
     @user = current_user
     @camps = Camp.active
-    @camp_id = params[:camp][:id] if params.dig(:camp, :id).present?
     @camp = Camp.new  
     render_wizard
   end
 
   def update
     @user = current_user
+    @user.update(selected_camp: params[:camp][:id]) if params[:id] == "introduction"
     @user.update(user_params) if wizard_steps.include?(step)
-    @camp_id = params[:camp][:id] if params.dig(:camp, :id).present?
     sign_in(@user, bypass: true)
     render_wizard
   end
@@ -75,7 +74,11 @@ class CampFormStepsController < ApplicationController
 
   def check_camp_validity
     return next_wizard_path if params[:camp].blank?
-    @camp = Camp.find_by(id: params[:camp][:id])
+    if params[:camp][:id].present?
+      @camp = Camp.find_by(id: params[:camp][:id])
+    else
+      @camp = Camp.find_by(id: current_user.selected_camp)
+    end
     return (redirect_to camp_form_step_path(:select_camp), alert:"registration date has ended for this camp. Select other!") if @camp.applicant_registration_date_end <= Date.today
 
   end

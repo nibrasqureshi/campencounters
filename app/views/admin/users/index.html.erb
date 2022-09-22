@@ -33,6 +33,7 @@
 				<th scope="col"><%= sortable "created_at", "Created" %></th>
 				<th scope="col"><%= sortable "type", "Role" %></th>
 				<th scope="col"><%= sortable "submission_status", "Application Status" %></th>
+				<th scope="col"><%= sortable "camp_id", "Camp Id" %></th>
 				<th scope="col">Application Progress</th>
 				<th scope="col">Actions</th>
 			</tr>
@@ -48,6 +49,7 @@
 					<td><%= user.created_at.strftime("%a, %b %-d, %Y") %></td>
 					<td><%= check_data_presence(user.type) %></td>
 					<td><%= check_data_presence(user.submission_status) %></td>
+					<td><%= check_data_presence(user.camp_id) %></td>
 					<td>
 						<div class="progress">
 							<div

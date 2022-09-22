@@ -9,9 +9,9 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def index
     respond_to do |format|
-      format.html {}
+      format.html
       format.csv do
-        send_data ExportService::CampExport.new(Camp.all).to_csv, filename: "campinfo-#{Date.today}.csv"
+        send_data csv_policy(Camp.all, attributes).to_csv, filename: "campinfo-#{Date.today}.csv"
       end
     end
   end
@@ -26,7 +26,8 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def update
-    if @camp.update(camp_params)
+    result = UpdateCamps.call(camp: @camp, camp_params: camp_params)
+    if result.updated_camp
       redirect_to([:admin, @camp])
     else
       render 'edit'
@@ -86,6 +87,10 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def csv_policy(records, attributes)
     CsvExport.new(records, attributes)
+  end
+
+  def attributes
+    %w[id camp_title camp_type locations applicant_registration_date applicant_registration_date_end]
   end
 
   def set_camps # rubocop:disable Metrics/AbcSize
