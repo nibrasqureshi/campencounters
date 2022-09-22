@@ -23,10 +23,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 5.2.0'
 gem 'bootstrap5-kaminari-views'
 gem 'devise'
+gem 'interactor-rails', '~> 2.0'
 gem 'jquery-rails'
+gem 'jwt'
 gem 'kaminari'
 gem 'pundit'
-gem "interactor-rails", "~> 2.0"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

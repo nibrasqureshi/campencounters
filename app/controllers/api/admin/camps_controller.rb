@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
 # camps controller for admin
-class Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+class Api::Admin::CampsController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :authorize_request
   before_action :set_camps, only: %i[index]
   before_action :find_camp, only: %i[show edit update destroy update_status]
   helper_method :sort_column, :sort_direction
 
   def index
-    respond_to do |format|
-      format.html
-      format.csv do
-        send_data csv_policy(Camp.all, attributes).to_csv, filename: "campinfo-#{Date.today}.csv"
-      end
-    end
+    @camps = Camp.all
   end
 
   def show; end
@@ -26,8 +21,7 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def update
-    result = UpdateCamps.call(camp: @camp, camp_params: camp_params)
-    if result.updated_camp
+    if @camp.update(camp_params)
       redirect_to([:admin, @camp])
     else
       render 'edit'
@@ -87,10 +81,6 @@ class Admin::CampsController < ApplicationController # rubocop:disable Style/Cla
 
   def csv_policy(records, attributes)
     CsvExport.new(records, attributes)
-  end
-
-  def attributes
-    %w[id camp_title camp_type locations applicant_registration_date applicant_registration_date_end]
   end
 
   def set_camps # rubocop:disable Metrics/AbcSize

@@ -1,3 +1,6 @@
+# frozen_string_literal:true
+
+# Job for deleting unnecessary camps
 class DeleteTimeOutCampsJob < ApplicationJob
   queue_as :default
 

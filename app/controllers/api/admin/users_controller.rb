@@ -1,19 +1,14 @@
 # frozen_string_literal:true
 
 # this is a user controller class for admin
-class Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
+class Api::Admin::UsersController < ApplicationController # rubocop:disable Style/ClassAndModuleChildren
   before_action :set_users, only: %i[index]
   before_action :find_user, only: %i[show edit update destroy]
   before_action :authorize_request
   helper_method :sort_column, :sort_direction
 
   def index
-    respond_to do |format|
-      format.html
-      format.csv do
-        send_data csv_policy(User.all, attributes).to_csv, filename: "userinfo-#{Date.today}.csv"
-      end
-    end
+    @users = User.all
   end
 
   def show; end
@@ -26,8 +21,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
   end
 
   def update
-    result = UpdateUsers.call(user: @user, user_params: user_params)
-    if result.updated_user
+    if @user.update(user_params)
       redirect_to([:admin, @user])
     else
       render 'edit'
@@ -40,7 +34,7 @@ class Admin::UsersController < ApplicationController # rubocop:disable Style/Cla
 
   def create
     result = CreateUsers.call(user_params: user_params)
-    @user = result.user
+    @user = result.camp
     if result.success?
       UserMailer.welcome_email(@user).deliver_now
       redirect_to admin_users_path
