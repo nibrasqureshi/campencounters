@@ -12,4 +12,10 @@ class Api::AuthenticationController < Api::ApplicationController
       render json: { errors: ['Invalid email or password '] }
     end
   end
+
+  def destroy
+    session.delete(current_user.id)
+    sign_out(current_user)
+    render json: { message: 'Successfully sign out.' }
+  end
 end
