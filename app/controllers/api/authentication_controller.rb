@@ -2,7 +2,6 @@
 
 # Authentication controller for API
 class Api::AuthenticationController < Api::ApplicationController
-
   def create
     user = User.find_by(email: params[:user][:email])
     if user.valid_password? params[:user][:password]
