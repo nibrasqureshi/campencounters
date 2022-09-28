@@ -8,7 +8,7 @@ class Api::Admin::UsersController < ApplicationController # rubocop:disable Styl
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.all
+    @users = User.order(id: :desc)
   end
 
   def show; end

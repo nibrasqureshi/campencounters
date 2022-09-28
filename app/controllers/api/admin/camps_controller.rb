@@ -18,7 +18,6 @@ class Api::Admin::CampsController < ApplicationController # rubocop:disable Styl
 
   def destroy
     @camp.destroy
-    render json: { message: 'Successfully Deleted.' }
   end
 
   def update
