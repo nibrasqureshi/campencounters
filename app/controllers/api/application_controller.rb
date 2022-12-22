@@ -1,11 +1,11 @@
 # frozen_string_literal:true
 
 # Application controller for API
-class Api::ApplicationController < ActionController::Api
+class Api::ApplicationController < ActionController::API
   include Authorization
   before_action :set_cache_headers
   before_action :set_default_format
-   
+
   protected
 
   def set_default_format

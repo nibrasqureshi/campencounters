@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     post :auth, to: 'authentication#create'
+    delete :auth, to: 'authentication#destroy'
     namespace :admin do
       resources :users
       resources :camps do

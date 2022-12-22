@@ -6,6 +6,7 @@ class Api::Admin::CampsController < ApplicationController # rubocop:disable Styl
   before_action :set_camps, only: %i[index]
   before_action :find_camp, only: %i[show edit update destroy update_status]
   helper_method :sort_column, :sort_direction
+  skip_before_action :verify_authenticity_token
 
   def index
     @camps = Camp.all
@@ -17,29 +18,17 @@ class Api::Admin::CampsController < ApplicationController # rubocop:disable Styl
 
   def destroy
     @camp.destroy
-    redirect_to admin_camps_path
   end
 
   def update
-    if @camp.update(camp_params)
-      redirect_to([:admin, @camp])
-    else
-      render 'edit'
-    end
+    @camp.update(camp_params)
   end
 
-  def new
-    @camp = Camp.new
-  end
+  def new; end
 
   def create
     result = CreateCamps.call(camp_params: camp_params)
     @camp = result.camp
-    if result.success?
-      redirect_to admin_camps_path
-    else
-      render 'new'
-    end
   end
 
   def update_status
@@ -67,7 +56,7 @@ class Api::Admin::CampsController < ApplicationController # rubocop:disable Styl
       :parent_registration_time_end,
       :status,
       :admin_id,
-      locations: []
+      :locations
     )
   end
 
